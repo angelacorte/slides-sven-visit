@@ -95,7 +95,7 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
   #set table(
     fill: (x, y) =>
       if x == 0 or y == 0 {
-        m-caribbean.lighten(80%)
+        blue.lighten(80%)
       },
     align: right,
   )
@@ -117,7 +117,7 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
   #set table(
     fill: (x, y) =>
       if x == 0 or y == 0 {
-        m-caribbean.lighten(80%)
+        blue.lighten(80%)
       },
     align: right,
   )
