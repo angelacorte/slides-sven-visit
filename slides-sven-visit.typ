@@ -45,16 +45,18 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 #new-section-slide("Why?")
 
 #slide(title: "State of the Art")[
-  - Proto: forefather in the field of aggregate programming;
+  TODO INSERT TABLE WITH FEATURES 
+  - *Proto*: forefather in the field of aggregate programming;
   
-  - Protelis: has functioning libraries but it is in mantainance mode;
+  - *Protelis*: has functioning libraries but it is in mantainance mode;
+   
+  - *ScaFi*: primarly used TODO;
   
-  - ScaFi: primarly used;
-  
-  - FCPP: would compile on different platforms, but supports a range of features more limited than the other languages.
+  - *FCPP*: would compile on different platforms, but supports a range of features more limited than the other languages.
 ]
 
-#slide(title: "Targeting of Wearables and Apple devices")[
+#slide(title: "Targeting of wearables and Apple devices")[
+  TODO INSERT TABLE WITH FEATURES 
   The state of the art at the moment does not entirely support the development of applications for wearable devices, like smartphones or smartwatches, including Apple devices.
 
   At JVM' side, Kotlin Native is more mantained than Scala and has the support for different Apple devices.
@@ -64,16 +66,58 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 
 ]
 
+#new-section-slide("Ingegneristic issues")
+
 #slide(title: "Reified Fields")[
-  TODO
+  TODO INSERT TABLE WITH FEATURES 
+  There are more semantics of _Field Calculus_.
+  ScaFi ne implementa una particolare, non consentendo allo sviluppatore di manipolare direttamente i campi, cosa che altri sistemi fanno e noi vogliamo fare.
+
+  ci sono varie tecniche per implementare i costrutti del field calculus, alcune tra queste utilizzano i campi reificati, "che sarebbe meglio usare"
 ]
 
 #slide(title: "Transparent Alignment")[
-  TODO
+  TODO INSERT TABLE WITH FEATURES 
+  
+  i dispositivi riescono a comunicare tra di loro senza di fatto una nozione esplicita di 'mando messaggi'
+  questa capacità di comunicare con altri dispositivi in punti arbitrari del codice viene chiamata allineamento
+
+  l'ideale dal punto di vista di chi realizza sw aggregato è che non debba gestire a mano l'allineamento, a meno che non ci siano moenti specifici in cui si vuole andare a basso livello a controllare
+  perche io scrivo in modo trasparente manipolando i field e assumo che sotto ciò venga gestito automaticamente, se fossero chiamate a libreria però sarebbero esplicite e quindi meno trasparenti, idem per le macro (fcpp)
+  oppure può essere un sistema completamente nascosto che non si vede, a runtime
+
+  
+  non devi spiegare al compilatore cosa annotare
+
+]
+
+#let programs = box[
+  #table(inset: 0.5em, stroke: none, columns: (1fr, 1fr),  align: (left, left),
+    [
+      ```scala
+       nbr(1)::nbr(2)
+       ```
+    ]
+    , [
+      ```scala
+       (nbr(1), nbr(2))
+      ```
+    ]
+  )
 ]
 
 #slide(title: "Complete or Partial Alignment")[
-  TODO  
+  #programs
+  
+  l'allineamento completo è quando non hai due programmi strutturalmente diversi che fra di loro si allineano (esempio della tesi)
+  [programmi strutturalmente diversi non devono alinnearsi]
+  esempio con scafi e protelis? 
+
+  //those programs are different and should not be aligned
+  (in scafi allineano)
+  //they must not align because one is a concat operation and the other is the construction of a tuple, so the result of the programs are different types
+  conto a quale nbr siamo arrivati, quindi la struttura astrae da quello che c'e intorno
+  mentre in collektive sono due cose diverse 
 ]
 
 #show table.cell: it => {
@@ -101,49 +145,16 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
   )
   
   #table(
-    columns: (6em, 3em, 2em, 5em, 5em, 7em, 6em, 5em),
+    columns: (6em, 5em, 3em, 2em, 5.4em, 5em, 7em, 6em),
     inset: 7pt,
     align: (left, center, center, center, center, center, center, center),
     table.header(
-      [Language], [JVM], [JS], [Wearable], [Reified Fields], [Transparent Alignment], [Automatic Complete Alignment], [DSL Type]
+      [Language], [DSL Type], [JVM], [JS], [Wearable], [Reified Fields], [Transparent Alignment], [Automatic Complete Alignment], 
     ),
-    [*Proto*],[*x*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[external],
-    [*Protelis*],[*\u{2713}*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[external],
-    [*ScaFi*],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],[*x*],[*\u{007E}*],[*x*],[internal],
-    [*FCPP*],[*x*],[*x*],[*\u{007E}*],[*\u{2713}*],[*x*],[*x*],[internal c++],
-  )
-]
-#slide(title: "Aim")[
-  #set table(
-    fill: (x, y) =>
-      if x == 0 or y == 0 {
-        blue.lighten(80%)
-      },
-    align: right,
-  )
-   #let check = table.cell(
-    fill: green.lighten(80%),
-  )[*\u{2713}*]
-  #let collektive = table.cell(
-    fill: green.lighten(80%),
-  )[*Collektive*]
-  #let kt = table.cell(
-    fill: green.lighten(80%),
-  )[internal kt]
-
-  #table(
-    columns: (6em, 3em, 2em, 5.4em, 5em, 7em, 6em, 5em),
-    inset: 7pt,
-    align: (left, center, center, center, center, center, center, center),
-    table.header(
-      [Language], [JVM], [JS], [Wearable], [Reified Fields], [Transparent Alignment], [Automatic Complete Alignment], [DSL Type]
-    ),
-    [*Proto*],[*x*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[external],
-    [*Protelis*],[*\u{2713}*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[external],
-    [*ScaFi*],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],[*x*],[*\u{007E}*],[*x*],[internal],
-    [*FCPP*],[*x*],[*x*],[*\u{007E}*],[*\u{2713}*],[*x*],[*x*],[internal c++],
-    collektive, check, check, check, check, check, check, kt,
-    //[*Collektive*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[internal kt]
+    [*Proto*],[external],[*x*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],
+    [*Protelis*],[external],[*\u{2713}*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],
+    [*ScaFi*],[internal],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],[*x*],[*\u{007E}*],[*x*],
+    [*FCPP*],[internal c++],[*x*],[*x*],[*\u{007E}*],[*\u{2713}*],[*x*],[*x*],
   )
 ]
 
@@ -167,8 +178,55 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
   TODO
 ]
 
+#slide(title: "Aim")[
+  #set table(
+    fill: (x, y) =>
+      if x == 0 or y == 0 {
+        blue.lighten(80%)
+      },
+    align: right,
+  )
+   #let check = table.cell(
+    fill: green.lighten(80%),
+  )[*\u{2713}*]
+  #let collektive = table.cell(
+    fill: green.lighten(80%),
+  )[*Collektive*]
+  #let kt = table.cell(
+    fill: green.lighten(80%),
+  )[internal kt]
+
+  #table(
+    columns: (6em, 5em, 3em, 2em, 5.4em, 5em, 7em, 6em),
+    inset: 7pt,
+    align: (left, center, center, center, center, center, center, center),
+    table.header(
+      [Language], [DSL Type], [JVM], [JS], [Wearable], [Reified Fields], [Transparent Alignment], [Automatic Complete Alignment], 
+    ),
+    [*Proto*],[external],[*x*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],
+    [*Protelis*],[external],[*\u{2713}*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],
+    [*ScaFi*],[internal],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],[*x*],[*\u{007E}*],[*x*],
+    [*FCPP*],[internal c++],[*x*],[*x*],[*\u{007E}*],[*\u{2713}*],[*x*],[*x*],
+    collektive, kt, check, check, check, check, check, check, 
+    //[*Collektive*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[*\u{2713}*],[internal kt]
+  )
+]
+
+
+#slide(title: "Alignment")[
+  quando riusciamo a fare un allineamento trasparente non si riesce a farlo anche completo
+  se scrivo del sw e il compilatore lo compila, se l'all è completo cioe per ogni chiamata a funzione lo devo allineare, l'unica è che tu chiami una funzione per dire di allineare
+  scafi ha una chiamata apposita chiamata 'aggregate' 
+  
+  l'unico(?) modo per fare un allineamento completo automatico è passare da un plugin del compilatore kotlin (che lavori a compile time), quando incontra la condizione per cui si deve allineare mantiene un secondo genera un percorso su cui deve allineare in uno stack interno e quando c'è una chiamata a funzione che implica comunicazione viene registrato
+  quindi becchiamo allineamento totale e trasparente
+]
+
 #slide(title: "Heterogeneity")[
-  TODO
+  i programmi aggregati assumono che ci sia lo stesso programma su i vari dispositivi altrimenti non allinea
+  succede che ad un certo punto potremmo aver bisogno di leggere il valore di un sensore SE C'È, alcuni programmi non dovresti poterli chiamare (compilare) se una certa cosa non è disponi
+  quessta cosa non è banale da esprimere
+  noi possiamo definire questa cosa utilizzando i context function di Kotlin, snippettino di codice con if se ho il sensore altrimenti, mentre collektive ha context() in cima 
 ]
 
 #slide(title: "Integration with Alchemist")[
