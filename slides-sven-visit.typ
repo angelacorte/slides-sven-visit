@@ -69,7 +69,7 @@
   )
   
   #table(
-    columns: (6em, 5em, 3em, 2em, 5.4em),
+    columns: (6em, 4.5em, 3em, 2em, 5.4em),
     inset: 7pt,
     align: (left, center, center, center, center),
     table.header(
@@ -99,7 +99,7 @@
   )
   
   #table(
-    columns: (6em, 5em, 3em, 2em, 5.4em, 5em),
+    columns: (6em, 4.5em, 3em, 2em, 5.4em, 5em),
     inset: 7pt,
     align: (left, center, center, center, center, center),
     table.header(
@@ -118,7 +118,7 @@
 ]
 
 #let desc = box[
-  #table(inset: 1em, stroke: none, columns: (1fr, 1fr,  1fr), align: (center, center, center),
+  #table(inset: 1em, stroke: none, columns: (1fr, 1fr,  1fr), align: (left, left, left),
     [[+, if, then -> nbr(v#sub[1])],\ [+, f -> nbr(v#sub[2])]],
     [[+, if, then -> nbr(v#sub[1])],\ [+, h -> nbr(v#sub[3])]],
     [[+, if, else -> nbr(v#sub[2])],\ [+, h -> nbr(v#sub[3])]]
@@ -128,7 +128,7 @@
 #let alignment = box[
   #table(inset: 0.5em, stroke: none, columns: (1fr),  align: (center),
   [#figure(
-    image("figures/alignment.svg", width: 90%),
+    image("figures/alignment.svg", width: 88%),
   )],
     [\ #desc]
   )
@@ -148,7 +148,7 @@
   )
   
   #table(
-    columns: (6em, 5em, 3em, 2em, 5.4em, 5em, 7em),
+    columns: (6em, 4.5em, 3em, 2em, 5.4em, 5em, 6.5em),
     inset: 7pt,
     align: (left, center, center, center, center, center, center, center),
     table.header(
@@ -195,7 +195,7 @@
 
   #programs
 
-  In ScaFi, however, they align.
+  In *ScaFi*, however, they align.
 
   // l'allineamento completo è quando non hai due programmi strutturalmente diversi che fra di loro si allineano (esempio della tesi)
   // [programmi strutturalmente diversi non devono alinnearsi]
@@ -218,7 +218,7 @@
   )
   
   #table(
-    columns: (6em, 5em, 3em, 2em, 5.4em, 5em, 7em, 6em),
+    columns: (6em, 4.5em, 3em, 2em, 5.4em, 5em, 6.5em, 6em),
     inset: 7pt,
     align: (left, center, center, center, center, center, center, center),
     table.header(
@@ -251,7 +251,7 @@
   // TODO
 ]
 
-#slide(title: "Aim")[
+#slide(title: "Objective")[
   #set table(
     fill: (x, y) =>
       if x == 0 or y == 0 {
@@ -270,7 +270,7 @@
   )[internal kt]
 
   #table(
-    columns: (6em, 5em, 3em, 2em, 5.4em, 5em, 7em, 6em),
+    columns: (6em, 4.5em, 3em, 2em, 5.4em, 5em, 6.5em, 6em),
     inset: 7pt,
     align: (left, center, center, center, center, center, center, center),
     table.header(
@@ -287,12 +287,14 @@
 
 
 #slide(title: "Alignment")[
-  quando riusciamo a fare un allineamento trasparente non si riesce a farlo anche completo
-  se scrivo del sw e il compilatore lo compila, se l'all è completo cioe per ogni chiamata a funzione lo devo allineare, l'unica è che tu chiami una funzione per dire di allineare
-  scafi ha una chiamata apposita chiamata 'aggregate' 
+  In *Collektive* the alignment is managed by the compiler plugin, resulting in a trasparent and automatic complete alignment.
+
+  // quando riusciamo a fare un allineamento trasparente non si riesce a farlo anche completo
+  // se scrivo del sw e il compilatore lo compila, se l'all è completo cioe per ogni chiamata a funzione lo devo allineare, l'unica è che tu chiami una funzione per dire di allineare
+  // scafi ha una chiamata apposita chiamata 'aggregate' 
   
-  l'unico(?) modo per fare un allineamento completo automatico è passare da un plugin del compilatore kotlin (che lavori a compile time), quando incontra la condizione per cui si deve allineare mantiene un secondo genera un percorso su cui deve allineare in uno stack interno e quando c'è una chiamata a funzione che implica comunicazione viene registrato
-  quindi becchiamo allineamento totale e trasparente
+  // l'unico(?) modo per fare un allineamento completo automatico è passare da un plugin del compilatore kotlin (che lavori a compile time), quando incontra la condizione per cui si deve allineare mantiene un secondo genera un percorso su cui deve allineare in uno stack interno e quando c'è una chiamata a funzione che implica comunicazione viene registrato
+  // quindi becchiamo allineamento totale e trasparente
 ]
 
 #slide(title: "Heterogeneity")[
