@@ -298,12 +298,25 @@
 ]
 
 #slide(title: "Heterogeneity")[
-  i programmi aggregati assumono che ci sia lo stesso programma su i vari dispositivi altrimenti non allinea
-  succede che ad un certo punto potremmo aver bisogno di leggere il valore di un sensore SE C'È, alcuni programmi non dovresti poterli chiamare (compilare) se una certa cosa non è disponi
-  quessta cosa non è banale da esprimere
-  noi possiamo definire questa cosa utilizzando i context function di Kotlin, snippettino di codice con if se ho il sensore altrimenti, mentre collektive ha context() in cima 
-]
+  Different devices can have different sets of sensor and actuators.
+  Current approaches search for these capabilities at runtime.
 
+  We are working to capture them in the type system using Kotlin's *context functions*.
+
+```kotlin
+  interface DistanceSensor { fun distances(): Field<Double> }
+  
+  context(DistanceSensor) // capability required to run the program
+  fun Aggregate<Int>.gradient(source: Boolean): Double {
+      val dist = distances() // the capability is available locally
+      ...
+  }
+  ```
+  // i programmi aggregati assumono che ci sia lo stesso programma su i vari dispositivi altrimenti non allinea
+  // succede che ad un certo punto potremmo aver bisogno di leggere il valore di un sensore SE C'È, alcuni programmi non dovresti poterli chiamare (compilare) se una certa cosa non è disponi
+  // questa cosa non è banale da esprimere
+  // noi possiamo definire questa cosa utilizzando i context function di Kotlin, snippettino di codice con if se ho il sensore altrimenti, mentre collektive ha context() in cima 
+]
 
 #let incarnation = box[
   #table(inset: 0.1em, stroke: none, columns: (1fr, 1fr), align: (left, left),
@@ -320,20 +333,6 @@
 
 #slide(title: "Integration with Alchemist")[
   #incarnation
-]
-
-#slide(title: "Example code")[
-  ```kotlin
-  context(DistanceSensor)
-  fun Aggregate<Int>.gradient(source: Boolean): Double =
-      share(POSITIVE_INFINITY) {
-          val dist = distances()
-          when {
-              source -> 0.0
-              else -> (it + dist).min(POSITIVE_INFINITY)
-          }
-      }
-  ```
 ]
 
 #new-section-slide("Live demo")
@@ -371,6 +370,8 @@
   #benchmarks
   Note that performance results may have been influenced by the incarnation of the language and should be further investigated.
 ]
+
+#new-section-slide("What's next?")
 
 #slide(title: "Ongoing")[
   - Usable for experiments;
