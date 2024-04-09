@@ -21,15 +21,20 @@
   width: 100%,
 )
 
-/*
-, prepara una presentazioncina su Collektive.
-AC sarà già stato introdotto, quindi a te sta spiegare:
-* vari tipi di linguaggi (dsl interni vs. esterni)
-* vari tipi di allineamento (parziale, totale, e cosa significa)
-* rilevanza del targeting multiplatform per mobile e wearable
-*puoi dire che la semantica è quella di XC che è la più recente
-non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare meno se ti viene meno, o più se ti viene più, ma fai una bella presentazione, deve sembrare un ted talk, ok?
-*/
+#show table.cell: it => {
+  if it.body == [*x*] {
+    set text(red)
+    it
+  } else if it.body == [*\u{2713}*] {
+    set text(green)
+    it
+  } else if it.body == [*\u{007E}*] {
+    set text(yellow.darken(20%))
+    it
+  } else {
+    it
+  }
+}
 
 #let author = box[
   #table(inset: 0.5em, stroke: none, columns: (1fr, auto),  align: (left, right),
@@ -45,7 +50,6 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 #new-section-slide("Why?")
 
 #slide(title: "State of the Art")[
-  TODO INSERT TABLE WITH FEATURES 
   - *Proto*: forefather in the field of aggregate programming;
   
   - *Protelis*: has functioning libraries but it is in mantainance mode;
@@ -56,28 +60,86 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 ]
 
 #slide(title: "Targeting of wearables and Apple devices")[
-  TODO INSERT TABLE WITH FEATURES 
+  #set table(
+    fill: (x, y) =>
+      if x == 0 or y == 0 {
+        blue.lighten(80%)
+      },
+    align: right,
+  )
+  
+  #table(
+    columns: (6em, 5em, 3em, 2em, 5.4em),
+    inset: 7pt,
+    align: (left, center, center, center, center),
+    table.header(
+      [Language], [DSL Type], [JVM], [JS], [Wearable]
+    ),
+    [*Proto*],[external],[*x*],[*x*],[*x*],
+    [*Protelis*],[external],[*\u{2713}*],[*x*],[*x*],
+    [*ScaFi*],[internal],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],
+    [*FCPP*],[internal c++],[*x*],[*x*],[*\u{007E}*],
+  )
   The state of the art at the moment does not entirely support the development of applications for wearable devices, like smartphones or smartwatches, including Apple devices.
 
-  At JVM' side, Kotlin Native is more mantained than Scala and has the support for different Apple devices.
+  //At JVM' side, Kotlin Native is more mantained than Scala and has the support for different Apple devices.
 
   // forse ora scalajs è mainline
-  TODO
-
 ]
 
 #new-section-slide("Ingegneristic issues")
 
 #slide(title: "Reified Fields")[
-  TODO INSERT TABLE WITH FEATURES 
-  There are more semantics of _Field Calculus_.
+  #set table(
+    fill: (x, y) =>
+      if x == 0 or y == 0 {
+        blue.lighten(80%)
+      },
+    align: right,
+  )
+  
+  #table(
+    columns: (6em, 5em, 3em, 2em, 5.4em, 5em),
+    inset: 7pt,
+    align: (left, center, center, center, center, center),
+    table.header(
+      [Language], [DSL Type], [JVM], [JS], [Wearable],[Reified Fields]
+    ),
+    [*Proto*],[external],[*x*],[*x*],[*x*],[*\u{2713}*],
+    [*Protelis*],[external],[*\u{2713}*],[*x*],[*x*],[*\u{2713}*],
+    [*ScaFi*],[internal],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],[*x*],
+    [*FCPP*],[internal c++],[*x*],[*x*],[*\u{007E}*],[*\u{2713}*],
+  )
+  There are more semantics of _Field Calculus_ that can be implemented, some of them use reified fields.
+  
   ScaFi ne implementa una particolare, non consentendo allo sviluppatore di manipolare direttamente i campi, cosa che altri sistemi fanno e noi vogliamo fare.
 
   ci sono varie tecniche per implementare i costrutti del field calculus, alcune tra queste utilizzano i campi reificati, "che sarebbe meglio usare"
 ]
 
 #slide(title: "Transparent Alignment")[
-  TODO INSERT TABLE WITH FEATURES 
+  #set table(
+    fill: (x, y) =>
+      if x == 0 or y == 0 {
+        blue.lighten(80%)
+      },
+    align: right,
+  )
+  
+  #table(
+    columns: (6em, 5em, 3em, 2em, 5.4em, 5em, 7em),
+    inset: 7pt,
+    align: (left, center, center, center, center, center, center, center),
+    table.header(
+      [Language], [DSL Type], [JVM], [JS], [Wearable], [Reified Fields], [Transparent Alignment], 
+    ),
+    [*Proto*],[external],[*x*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],
+    [*Protelis*],[external],[*\u{2713}*],[*x*],[*x*],[*\u{2713}*],[*\u{2713}*],
+    [*ScaFi*],[internal],[*\u{2713}*],[*\u{2713}*],[*\u{007E}*],[*x*],[*\u{007E}*],
+    [*FCPP*],[internal c++],[*x*],[*x*],[*\u{007E}*],[*\u{2713}*],[*x*],
+  )
+
+  Devices can communicate between each other without an explicit notion of "sending messages".
   
   i dispositivi riescono a comunicare tra di loro senza di fatto una nozione esplicita di 'mando messaggi'
   questa capacità di comunicare con altri dispositivi in punti arbitrari del codice viene chiamata allineamento
@@ -93,14 +155,15 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 
 #let programs = box[
   #table(inset: 0.5em, stroke: none, columns: (1fr, 1fr),  align: (left, left),
+    // [Program \#1],[Program \#2],
     [
       ```scala
-       nbr(1)::nbr(2)
+       nbr(1)::nbr(2) //list
        ```
-    ]
-    , [
+    ], 
+    [
       ```scala
-       (nbr(1), nbr(2))
+       (nbr(1), nbr(2)) //tuple
       ```
     ]
   )
@@ -109,6 +172,8 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 #slide(title: "Complete or Partial Alignment")[
   #programs
   
+  Two structural different programs must not align in the _complete alignment_.
+
   l'allineamento completo è quando non hai due programmi strutturalmente diversi che fra di loro si allineano (esempio della tesi)
   [programmi strutturalmente diversi non devono alinnearsi]
   esempio con scafi e protelis? 
@@ -119,21 +184,6 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
   conto a quale nbr siamo arrivati, quindi la struttura astrae da quello che c'e intorno
   mentre in collektive sono due cose diverse 
 ]
-
-#show table.cell: it => {
-  if it.body == [*x*] {
-    set text(red)
-    it
-  } else if it.body == [*\u{2713}*] {
-    set text(green)
-    it
-  } else if it.body == [*\u{007E}*] {
-    set text(yellow.darken(20%))
-    it
-  } else {
-    it
-  }
-}
 
 #slide(title: "Overview")[
   #set table(
@@ -235,7 +285,15 @@ non hai limiti stretti di tempo, ma idealmente si punta a 30 minuti. Puoi fare m
 
 #slide(title: "Example code")[
   ```kotlin
-    TODO() 
+  context(DistanceSensor)
+  fun Aggregate<Int>.gradient(source: Boolean): Double =
+      share(POSITIVE_INFINITY) {
+          val dist = distances()
+          when {
+              source -> 0.0
+              else -> (it + dist).min(POSITIVE_INFINITY)
+          }
+      }
   ```
 ]
 
