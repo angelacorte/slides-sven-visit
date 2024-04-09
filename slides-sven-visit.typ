@@ -287,7 +287,7 @@
 
 
 #slide(title: "Alignment")[
-  In *Collektive* the alignment is managed by the compiler plugin, resulting in a trasparent and automatic complete alignment.
+  In *Collektive* the alignment is managed by the compiler plugin, resulting in a trasparent, automatic and complete alignment.
 
   // quando riusciamo a fare un allineamento trasparente non si riesce a farlo anche completo
   // se scrivo del sw e il compilatore lo compila, se l'all è completo cioe per ogni chiamata a funzione lo devo allineare, l'unica è che tu chiami una funzione per dire di allineare
@@ -305,7 +305,7 @@
 
 ```kotlin
   interface DistanceSensor { fun distances(): Field<Double> }
-  
+
   context(DistanceSensor) // capability required to run the program
   fun Aggregate<Int>.gradient(source: Boolean): Double {
       val dist = distances() // the capability is available locally
