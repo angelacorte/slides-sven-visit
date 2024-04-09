@@ -112,9 +112,9 @@
   )
   There are more semantics of _Field Calculus_ that can be implemented, some of them use reified fields.
   
-  ScaFi ne implementa una particolare, non consentendo allo sviluppatore di manipolare direttamente i campi, cosa che altri sistemi fanno e noi vogliamo fare.
+  // ScaFi ne implementa una particolare, non consentendo allo sviluppatore di manipolare direttamente i campi, cosa che altri sistemi fanno e noi vogliamo fare.
 
-  ci sono varie tecniche per implementare i costrutti del field calculus, alcune tra queste utilizzano i campi reificati, "che sarebbe meglio usare"
+  // ci sono varie tecniche per implementare i costrutti del field calculus, alcune tra queste utilizzano i campi reificati, "che sarebbe meglio usare"
 ]
 
 #let desc = box[
@@ -162,15 +162,15 @@
 
   Devices can communicate between each other without an explicit notion of "sending messages".
   
-  i dispositivi riescono a comunicare tra di loro senza di fatto una nozione esplicita di 'mando messaggi'
-  questa capacità di comunicare con altri dispositivi in punti arbitrari del codice viene chiamata allineamento
+  // i dispositivi riescono a comunicare tra di loro senza di fatto una nozione esplicita di 'mando messaggi'
+  // questa capacità di comunicare con altri dispositivi in punti arbitrari del codice viene chiamata allineamento
 
-  l'ideale dal punto di vista di chi realizza sw aggregato è che non debba gestire a mano l'allineamento, a meno che non ci siano moenti specifici in cui si vuole andare a basso livello a controllare
-  perche io scrivo in modo trasparente manipolando i field e assumo che sotto ciò venga gestito automaticamente, se fossero chiamate a libreria però sarebbero esplicite e quindi meno trasparenti, idem per le macro (fcpp)
-  oppure può essere un sistema completamente nascosto che non si vede, a runtime
+  // l'ideale dal punto di vista di chi realizza sw aggregato è che non debba gestire a mano l'allineamento, a meno che non ci siano moenti specifici in cui si vuole andare a basso livello a controllare
+  // perche io scrivo in modo trasparente manipolando i field e assumo che sotto ciò venga gestito automaticamente, se fossero chiamate a libreria però sarebbero esplicite e quindi meno trasparenti, idem per le macro (fcpp)
+  // oppure può essere un sistema completamente nascosto che non si vede, a runtime
 
   
-  non devi spiegare al compilatore cosa annotare
+  // non devi spiegare al compilatore cosa annotare
 
 ]
 
@@ -248,7 +248,7 @@
 
 #slide(title: "Collektive")[
   #collektive
-  TODO
+  // TODO
 ]
 
 #slide(title: "Aim")[
