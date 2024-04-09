@@ -54,12 +54,12 @@
   
   - *Protelis*: has functioning libraries but it is in mantainance mode;
    
-  - *ScaFi*: primarly used TODO;
+  - *ScaFi*: currently our reference tool;
   
   - *FCPP*: would compile on different platforms, but supports a range of features more limited than the other languages.
 ]
 
-#slide(title: "Targeting of wearables and Apple devices")[
+#slide(title: "Targeting wearables and Apple devices")[
   #set table(
     fill: (x, y) =>
       if x == 0 or y == 0 {
@@ -117,6 +117,27 @@
   ci sono varie tecniche per implementare i costrutti del field calculus, alcune tra queste utilizzano i campi reificati, "che sarebbe meglio usare"
 ]
 
+#let desc = box[
+  #table(inset: 1em, stroke: none, columns: (1fr, 1fr,  1fr), align: (center, center, center),
+    [[+, if, then -> nbr(v#sub[1])],\ [+, f -> nbr(v#sub[2])]],
+    [[+, if, then -> nbr(v#sub[1])],\ [+, h -> nbr(v#sub[3])]],
+    [[+, if, else -> nbr(v#sub[2])],\ [+, h -> nbr(v#sub[3])]]
+  )
+]
+
+#let alignment = box[
+  #table(inset: 0.5em, stroke: none, columns: (1fr),  align: (center),
+  [#figure(
+    image("figures/alignment.svg", width: 90%),
+  )],
+    [\ #desc]
+  )
+]
+
+#slide(title: "Alignment")[
+  #alignment
+]
+
 #slide(title: "Transparent Alignment")[
   #set table(
     fill: (x, y) =>
@@ -169,20 +190,22 @@
   )
 ]
 
-#slide(title: "Complete or Partial Alignment")[
+#slide(title: "Complete or Partial Alignment")[  
+  Two structurally different programs should not align.
+
   #programs
-  
-  Two structural different programs must not align in the _complete alignment_.
 
-  l'allineamento completo è quando non hai due programmi strutturalmente diversi che fra di loro si allineano (esempio della tesi)
-  [programmi strutturalmente diversi non devono alinnearsi]
-  esempio con scafi e protelis? 
+  In ScaFi, however, they align.
 
-  //those programs are different and should not be aligned
-  (in scafi allineano)
-  //they must not align because one is a concat operation and the other is the construction of a tuple, so the result of the programs are different types
-  conto a quale nbr siamo arrivati, quindi la struttura astrae da quello che c'e intorno
-  mentre in collektive sono due cose diverse 
+  // l'allineamento completo è quando non hai due programmi strutturalmente diversi che fra di loro si allineano (esempio della tesi)
+  // [programmi strutturalmente diversi non devono alinnearsi]
+  // esempio con scafi e protelis? 
+
+  // //those programs are different and should not be aligned
+  // (in scafi allineano)
+  // //they must not align because one is a concat operation and the other is the construction of a tuple, so the result of the programs are different types
+  // conto a quale nbr siamo arrivati, quindi la struttura astrae da quello che c'e intorno
+  // mentre in collektive sono due cose diverse 
 ]
 
 #slide(title: "Overview")[
