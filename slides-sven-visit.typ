@@ -279,8 +279,22 @@
   noi possiamo definire questa cosa utilizzando i context function di Kotlin, snippettino di codice con if se ho il sensore altrimenti, mentre collektive ha context() in cima 
 ]
 
+
+#let incarnation = box[
+  #table(inset: 0.1em, stroke: none, columns: (1fr, 1fr), align: (left, left),
+    [
+      #figure(
+       image("figures/gradient-2.png", width: 75%),
+      )
+    ]
+    , [
+      Simulating the behaviour of a distributed system is crucial to verify the correctness of the system and to understand its behaviour in different scenarios.
+    ]
+  )
+]
+
 #slide(title: "Integration with Alchemist")[
-  TODO
+  #incarnation
 ]
 
 #slide(title: "Example code")[
@@ -339,8 +353,4 @@
   - Standard library next to be done;
   
   - Actually working on an extension of an approach proposed at ACSOS.
-]
-
-#slide[
-  #bibliography("bibliography.bib")
 ]
