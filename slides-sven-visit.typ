@@ -184,7 +184,7 @@
     return min_hood(CALL, a);
   });
   ```
-  To align *FCPP* requires the use of macros, resulting in a non-transparent alignment. 
+  *FCPP* requires the use of macros to align, which results in a lack of transparency. 
 ]
 
 #let programs = box[
