@@ -38,7 +38,8 @@
 
 #let author = box[
   #table(inset: 0.5em, stroke: none, columns: (1fr, auto),  align: (left, right),
-    [*Angela Cortecchia*], [angela.cortecchia\@unibo.it]
+    [*Angela Cortecchia*], [angela.cortecchia\@unibo.it],
+    [Guest fellow researcher]
   )
 ]
 
