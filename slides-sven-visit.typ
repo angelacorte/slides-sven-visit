@@ -172,7 +172,19 @@
 
   
   // non devi spiegare al compilatore cosa annotare
+]
 
+#slide(title: "Example of non-trasparent alignment")[
+  ```cpp
+  field<double> f = nbr(CALL, 4.2); // nbr with single value
+  int x = old(CALL, 0, [&](int a){  // old with initial value and update function
+    return a+1;
+  });
+  int y = nbr(CALL, 0, [&](field<int> a){ // nbr with initial value and update function
+    return min_hood(CALL, a);
+  });
+  ```
+  To align *FCPP* requires the use of macros, resulting in a non-transparent alignment. 
 ]
 
 #let programs = box[
@@ -190,6 +202,7 @@
     ]
   )
 ]
+
 
 #slide(title: "Complete or Partial Alignment")[  
   Two structurally different programs should not align.
