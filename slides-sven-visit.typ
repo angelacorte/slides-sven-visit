@@ -12,6 +12,7 @@
 #show math.equation: set text(font: "Fira Math")
 #set strong(delta: 150)
 #set par(justify: true)
+#show figure.caption: set text(size: 14pt)
 
 #set raw(tab-size: 4)
 #show raw.where(block: true): block.with(
@@ -353,7 +354,7 @@
 
 #let benchmarks = box[
   #figure(
-    table(inset: 0.3em, stroke: none, columns: (2fr, 2fr, 2fr, 2fr, 0.5fr), align: (center, center),
+    table(inset: (0.3em, 0.5em), stroke: none, columns: (2fr, 2fr, 2fr, 2fr, 0.5fr), align: (center, center),
       [
         #figure(
         image("figures/neighborCounter.svg", width: 200%),
