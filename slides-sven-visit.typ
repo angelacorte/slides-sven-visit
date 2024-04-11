@@ -192,7 +192,7 @@
     // [Program \#1],[Program \#2],
     [
       ```scala
-       nbr(1)::nbr(2) //list
+       nbr(1) :: nbr(2) :: Nil //list
        ```
     ], 
     [
