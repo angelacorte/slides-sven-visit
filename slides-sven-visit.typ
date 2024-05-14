@@ -40,7 +40,7 @@
 #let author = box[
   #table(inset: 0.5em, stroke: none, columns: (1fr, auto),  align: (left, right),
     [*Angela Cortecchia*], [angela.cortecchia\@unibo.it],
-    [Guest fellow researcher]
+    [GARR research fellow \@ UniBo ]
   )
 ]
 
@@ -302,7 +302,9 @@
 
 
 #slide(title: "Alignment")[
-  In *Collektive* the alignment is managed by the compiler plugin, resulting in a trasparent, automatic and complete alignment.
+  In *Collektive* the alignment is managed by the *compiler plugin*, resulting in a trasparent, automatic and complete alignment.
+
+  // The control flow visits the functions, when it finds some that entails communication, the function gets pushed into a stack. Then the control flow exiting the function pops the name from the stack and generates a _path_.
 
   // quando riusciamo a fare un allineamento trasparente non si riesce a farlo anche completo
   // se scrivo del sw e il compilatore lo compila, se l'all è completo cioe per ogni chiamata a funzione lo devo allineare, l'unica è che tu chiami una funzione per dire di allineare
